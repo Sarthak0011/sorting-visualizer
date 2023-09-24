@@ -1,0 +1,34 @@
+*{
+    background-color: beige;
+}
+.array-container {
+    position: absolute;
+    left: 100px;
+    bottom: 10px;
+}
+
+.array-bar {
+    width: 8px;
+    background-color:yellow;
+    display: inline-block;
+    margin: 0 1px;
+    border: 1px solid black;
+}
+.buttons {
+    display: flex;
+}
+.btn {
+    width: 200px;
+    height: 40px;
+    border-radius: 15px;
+    border: none;
+    margin: auto;
+}
+
+.generate-new-array {
+    background-color: chartreuse;
+}
+.sorting-type{
+    background-color: blueviolet;
+    color: white;
+}
