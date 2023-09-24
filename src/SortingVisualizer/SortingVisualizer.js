@@ -3,6 +3,7 @@ import "./SortingVisualizer.css";
 import { getMergeSortAnimations } from "../SortingAlgorithms/MergeSort";
 import { getBubbleSortAnimations } from "../SortingAlgorithms/BubbleSort";
 import { getSelectionSortAnimations } from "../SortingAlgorithms/SelectionSort";
+import { getQuickSortAnimations } from "../SortingAlgorithms/QuickSort";
 
 const NUMBER_OF_BARS = 100;
 const VISUALIZING_SPEED = 1;
@@ -54,15 +55,11 @@ export default class SortingVisualizer extends React.Component {
     }
 
     quickSort() {
-
-    }
-
-    selectionSort() {
-        const animations = getSelectionSortAnimations(this.state.array);
+        const animations = getQuickSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName("array-bar");
             const isColorChange = i % 3 !== 2;
-            if(isColorChange){
+            if(isColorChange) {
                 const [barOneIndex, barTwoIndex] = animations[i];
                 const barOneStyle = arrayBars[barOneIndex].style;
                 const barTwoStyle = arrayBars[barTwoIndex].style;
@@ -72,7 +69,39 @@ export default class SortingVisualizer extends React.Component {
                     barTwoStyle.backgroundColor = color;
                 }, i * VISUALIZING_SPEED);
             }
-            else{
+            else {
+                const [barOne, barTwo] = animations[i];
+                const barOneIndex = barOne.index;
+                const barTwoIndex = barTwo.index;
+                const barOneNewHeight = barOne.newHeight;
+                const barTwoNewHeight = barTwo.newHeight;
+
+                const barOneStyle = arrayBars[barOneIndex].style;
+                const barTwoStyle = arrayBars[barTwoIndex].style;
+                setTimeout(() => {
+                    barOneStyle.height = `${barOneNewHeight}px`;
+                    barTwoStyle.height = `${barTwoNewHeight}px`;
+                }, i * VISUALIZING_SPEED);
+            }
+        }
+    }
+
+    selectionSort() {
+        const animations = getSelectionSortAnimations(this.state.array);
+        for (let i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName("array-bar");
+            const isColorChange = i % 3 !== 2;
+            if (isColorChange) {
+                const [barOneIndex, barTwoIndex] = animations[i];
+                const barOneStyle = arrayBars[barOneIndex].style;
+                const barTwoStyle = arrayBars[barTwoIndex].style;
+                const color = (i % 3 === 0) ? "red" : "yellow";
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * VISUALIZING_SPEED);
+            }
+            else {
                 const [barOneIndex, barOneHeight, barTwoIndex, barTwoHeight] = animations[i];
                 const barOneStyle = arrayBars[barOneIndex].style;
                 const barTwoStyle = arrayBars[barTwoIndex].style;
