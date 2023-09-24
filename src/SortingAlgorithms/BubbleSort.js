@@ -9,12 +9,13 @@ export function getBubbleSortAnimations(array) {
 function bubbleSortHelper(array, n, animations) {
 
     for (let i = 0; i < n - 1; i++) {
+        let swapped = false;
         for (let j = 0; j < n - i - 1; j++) {
 
             animations.push([j, j + 1]);
             animations.push([j, j + 1]);
             if (array[j] > array[j + 1]) {
-                
+                swapped = true;
                 animations.push([
                     {
                         index: j,
@@ -43,6 +44,7 @@ function bubbleSortHelper(array, n, animations) {
             }
 
         }
+        if(swapped === false) break;
     }
 
 }
